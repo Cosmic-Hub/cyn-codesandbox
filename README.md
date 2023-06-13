@@ -18,5 +18,9 @@ To start this project run:
 - Update get all projects to include the count of tasks associated
 ### Frontend
 - Find and fix a bug in useProjects hook
-- Finish createTask implementation: form in createTaskModal, addTask* in useTasks hook and the api call in api/index.js 
+- Finish createTask implementation: 
+  - 
+  - form in createTaskModal,
+  - 
+  -addTask* in useTasks hook and the api call in api/index.js 
 *after adding a task it must show in project page
