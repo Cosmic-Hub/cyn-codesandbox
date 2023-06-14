@@ -13,6 +13,7 @@ function ProjectCard({ project }) {
         <div className="p-4">
           <h5 className="font-bold">{project.title}</h5>
           <p className="text-sm">{project.description}</p>
+          <p className="text-sm">{project.tasksCount} tasks</p>
         </div>
       </div>
     </Link>
@@ -24,6 +25,7 @@ ProjectCard.propTypes = {
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
+    tasksCount: PropTypes.number.isRequired,
   }),
 };
 

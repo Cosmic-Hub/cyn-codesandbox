@@ -1,14 +1,23 @@
 import { useState } from 'react';
 import { PropTypes } from 'prop-types';
+import { useParams } from 'react-router-dom';
 
 export default function CreateTaskModal({ addTask }) {
+  const { id } = useParams();
   const [showModal, setShowModal] = useState(false);
+  const [formState, setFormState] = useState({
+    title: '',
+    description: '',
+  });
 
+  const handleChange = (e) => {
+    setFormState((prevState) => ({
+      ...prevState,
+      [e.target.id]: e.target.value,
+    }));
+  };
   const handleSubmit = async () => {
-    const task = {
-      title: 'title',
-      description: 'description',
-    };
+    const task = { ...formState, projectId: id };
     await addTask(task);
     setShowModal(false);
   };
@@ -51,6 +60,8 @@ export default function CreateTaskModal({ addTask }) {
                     <input
                       type="text"
                       id="title"
+                      value={formState.title}
+                      onChange={handleChange}
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded block w-full p-2.5 "
                       placeholder="Title"
                       required
@@ -66,6 +77,8 @@ export default function CreateTaskModal({ addTask }) {
                     <input
                       type="text"
                       id="description"
+                      value={formState.description}
+                      onChange={handleChange}
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                       placeholder="Description"
                       required

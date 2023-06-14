@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getTasksByProjectId } from '../api';
+import { getTasksByProjectId, createTask } from '../api';
 
 function useTasks(projectId) {
   const [tasks, setTasks] = useState([]);
@@ -9,7 +9,11 @@ function useTasks(projectId) {
       .catch((err) => console.log(err));
   }, [projectId]);
   const addTask = (task) => {
-    throw new Error('Not implemented');
+    createTask(task)
+      .then((res) => {
+        setTasks((prevState) => [...prevState, res.data]);
+      })
+      .catch((err) => console.log(err));
   };
   return {
     tasks,
