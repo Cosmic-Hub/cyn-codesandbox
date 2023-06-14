@@ -19,8 +19,6 @@ To start this project run:
 ### Frontend
 - Find and fix a bug in useProjects hook
 - Finish createTask implementation: 
-  - 
   - form in createTaskModal,
-  - 
-  -addTask* in useTasks hook and the api call in api/index.js 
+  - addTask* in useTasks hook and the api call in api/index.js 
 *after adding a task it must show in project page
