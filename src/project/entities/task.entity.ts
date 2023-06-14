@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Project } from './project.entity';
 
 @Entity()
 export class Task {
@@ -12,4 +13,6 @@ export class Task {
   description: string;
 
   // TODO: Add the necessary relationship methods or properties to establish the relationship between the Task and Project entities.
+  @ManyToOne(() => Project, (project) => project.tasks)
+  project: Project;
 }

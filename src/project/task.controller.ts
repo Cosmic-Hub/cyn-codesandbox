@@ -8,8 +8,9 @@ import { Task } from './entities/task.entity';
 export class TaskController {
   constructor(private readonly taskService: TaskService) {}
 
-  async findOne(): Promise<Task> {
-    return this.taskService.findOne();
+  @Get(':id')
+  async findOne(@Param('id') id: number): Promise<Task> {
+    return this.taskService.findOne(id);
   }
 
   @Post()

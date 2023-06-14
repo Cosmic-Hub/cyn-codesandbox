@@ -4,6 +4,7 @@ import { UpdateProjectDto } from './dto/update-project.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Project } from './entities/project.entity';
 import { Repository } from 'typeorm';
+import { ProjectWithCountDto } from './dto/project-with-count.dto';
 
 @Injectable()
 export class ProjectService implements OnApplicationBootstrap {
@@ -34,8 +35,11 @@ export class ProjectService implements OnApplicationBootstrap {
     return this.projectsRepository.save(createProjectDto);
   }
 
-  findAll(): Promise<Project[]> {
-    return this.projectsRepository.find();
+  findAll(): Promise<ProjectWithCountDto[]> {
+    return this.projectsRepository
+      .createQueryBuilder('project')
+      .loadRelationCountAndMap('project.tasksCount', 'project.tasks', 'tasks')
+      .getMany();
   }
 
   findOne(id: number): Promise<Project> {
